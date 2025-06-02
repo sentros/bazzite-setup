@@ -9,3 +9,9 @@
         name: overlay-apps
       tags:
         - always
+
+    - name: "Install pip based apps"
+      ansible.builtin.include_role:
+        name: pip-apps
+      tags:
+        - always

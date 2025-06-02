@@ -1,0 +1,6 @@
+- name: "Update pip and setuptools"
+  ansible.builtin.pip:
+    name:
+      - pip
+      - setuptools
+    state: latest
