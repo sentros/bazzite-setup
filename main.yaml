@@ -15,3 +15,9 @@
         name: pip-apps
       tags:
         - always
+
+    - name: "Install brew based apps"
+      ansible.builtin.include_role:
+        name: brew-apps
+      tags:
+        - always

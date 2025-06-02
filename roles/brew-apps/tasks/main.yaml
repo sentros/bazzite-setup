@@ -1,0 +1,11 @@
+- name: "Install brew based apps"
+  community.general.homebrew:
+    name:
+      - bat
+      - eza
+      - fzf
+      - hadolint
+      - shellcheck
+      - zsh
+    state: latest
+    update_homebrew: true
