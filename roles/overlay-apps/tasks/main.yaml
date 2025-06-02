@@ -1,11 +1,11 @@
-- name: Add 1password gpg key
+- name: "Add 1password gpg key"
   ansible.builtin.get_url:
     url: https://downloads.1password.com/linux/keys/1password.asc
     dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-1Password
     mode: "0644"
   become: true
 
-- name: Add 1password repository
+- name: "Add 1password repository"
   ansible.builtin.yum_repository:
     name: "1password"
     description: "1Password Stable Channel"
@@ -16,14 +16,14 @@
     gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-1Password"
   become: true
 
-- name: Add Microsoft gpg key
+- name: "Add Microsoft gpg key"
   ansible.builtin.get_url:
     url: https://packages.microsoft.com/keys/microsoft.asc
     dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-Microsoft
     mode: "0644"
   become: true
 
-- name: Add VSCode repository
+- name: "Add VSCode repository"
   ansible.builtin.yum_repository:
     name: "vscode"
     description: "Visual Studio Code"
