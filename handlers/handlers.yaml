@@ -1,2 +1,3 @@
 - name: "Reboot Bazzite"
   ansible.builtin.reboot:
+  become: true
