@@ -1,5 +1,6 @@
 - name: "Set up Bazzite"
   hosts: localhost
+  connection: local
   handlers:
     - name: "Custom handlers"
       ansible.builtin.import_tasks: handlers/handlers.yaml
@@ -19,5 +20,11 @@
     - name: "Install brew based apps"
       ansible.builtin.include_role:
         name: brew-apps
+      tags:
+        - always
+
+    - name: "Set up terminal"
+      ansible.builtin.include_role:
+        name: terminal
       tags:
         - always

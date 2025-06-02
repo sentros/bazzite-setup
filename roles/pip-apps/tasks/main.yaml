@@ -1,6 +1,6 @@
-- name: "Update pip and setuptools"
+- name: "Install pip based apps"
   ansible.builtin.pip:
     name:
-      - pip
-      - setuptools
-    state: latest
+      - httpie
+    state: present
+    extra_args: --user
