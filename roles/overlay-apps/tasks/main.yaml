@@ -1,0 +1,53 @@
+- name: Add 1password gpg key
+  ansible.builtin.get_url:
+    url: https://downloads.1password.com/linux/keys/1password.asc
+    dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-1Password
+    mode: "0644"
+  become: true
+
+- name: Add 1password repository
+  ansible.builtin.yum_repository:
+    name: "1password"
+    description: "1Password Stable Channel"
+    baseurl: "https://downloads.1password.com/linux/rpm/stable/$basearch"
+    enabled: true
+    gpgcheck: true
+    repo_gpgcheck: true
+    gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-1Password"
+  become: true
+
+- name: Add Microsoft gpg key
+  ansible.builtin.get_url:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-Microsoft
+    mode: "0644"
+  become: true
+
+- name: Add VSCode repository
+  ansible.builtin.yum_repository:
+    name: "vscode"
+    description: "Visual Studio Code"
+    baseurl: "https://packages.microsoft.com/yumrepos/vscode"
+    enabled: true
+    gpgcheck: true
+    repo_gpgcheck: true
+    gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Microsoft"
+  become: true
+
+- name: "Install overlay packages"
+  community.general.rpm_ostree_pkg:
+    name:
+      # 1password
+      - 1password
+      - 1password-cli
+      # VSCode
+      - code
+      # # qmk dependencies
+      # - arm-none-eabi-gcc
+      # - arm-none-eabi-newlib
+      # - avr-gcc
+      # - avrdude
+      # - dfu-programmer
+      # - dfu-util
+    state: present
+  notify: "Reboot Bazzite"

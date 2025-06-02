@@ -1,0 +1,11 @@
+- name: "Set up Bazzite"
+  hosts: localhost
+  handlers:
+    - name: "Custom handlers"
+      ansible.builtin.import_tasks: handlers/handlers.yaml
+  tasks:
+    - name: "Install repo based apps"
+      ansible.builtin.include_role:
+        name: overlay-apps
+      tags:
+        - always
