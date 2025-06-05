@@ -11,6 +11,12 @@
       tags:
         - always
 
+    - name: "Install flatpak based apps"
+      ansible.builtin.include_role:
+        name: flatpak-apps
+      tags:
+        - always
+
     - name: "Install pip based apps"
       ansible.builtin.include_role:
         name: pip-apps

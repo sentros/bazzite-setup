@@ -1,0 +1,8 @@
+- name: "Install flatpack apps"
+  community.general.flatpak:
+    method: system
+    state: present
+    remote: flathub
+    name:
+      - org.telegram.desktop
+      - org.telegram.desktop.webview
