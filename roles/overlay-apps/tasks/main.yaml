@@ -17,6 +17,13 @@
         repo_gpgcheck: true
         gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-1Password"
 
+    - name: "Add 1password ssh agent config"
+      ansible.builtin.copy:
+        src: "{{ role_path }}/files/ssh_config"
+        dest: "$HOME/.ssh/config"
+        mode: "0600"
+      become: false
+
     - name: "Add Microsoft gpg key"
       ansible.builtin.get_url:
         url: https://packages.microsoft.com/keys/microsoft.asc
