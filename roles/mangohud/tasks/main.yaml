@@ -1,0 +1,5 @@
+- name: "Copy mangohud configs over"
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/"
+    dest: "$HOME/.config/MangoHud/"
+    mode: "0644"

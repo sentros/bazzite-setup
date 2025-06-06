@@ -34,3 +34,9 @@
         name: terminal
       tags:
         - always
+
+    - name: "Copy over mangohud configs"
+      ansible.builtin.include_role:
+        name: mangohud
+      tags:
+        - always
