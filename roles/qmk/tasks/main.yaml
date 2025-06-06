@@ -1,0 +1,40 @@
+# List of dependencies is based on:
+# https://github.com/qmk/qmk_firmware/blob/master/util/install/fedora.sh
+# As there's no dedicated installed for bazzite we have to create our own
+
+- name: "Qmk block"
+  tags: qmk
+  block:
+    - name: "Install qmk dependencies"
+      community.general.rpm_ostree_pkg:
+        name:
+          # qmk dependencies
+          - "arm-none-eabi-gcc-cs-c++"
+          - "avr-gcc-c++"
+          - arm-none-eabi-binutils-cs
+          - arm-none-eabi-gcc
+          - arm-none-eabi-gcc-cs
+          - arm-none-eabi-newlib
+          - avr-binutils
+          - avr-gcc
+          - avr-libc
+          - avrdude
+          - clang
+          - dfu-programmer
+          - dfu-util
+          - git
+          - libusb-compat-0.1-devel
+          - libusb1-devel
+        state: present
+      notify: "Reboot Bazzite"
+
+    - name: "Install qmk"
+      ansible.builtin.pip:
+        name:
+          - qmk
+        state: present
+        extra_args: --user
+
+    - name: "Verify qmk binary runs"
+      ansible.builtin.command: "qmk -V"
+      changed_when: false

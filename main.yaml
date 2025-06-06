@@ -40,3 +40,9 @@
         name: mangohud
       tags:
         - always
+
+    - name: "Set up qmk"
+      ansible.builtin.include_role:
+        name: qmk
+      tags:
+        - always
