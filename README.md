@@ -20,3 +20,9 @@ git clone https://github.com/sentros/bazzite-setup
 cd bazzite-setup
 ansible-playbook main.yaml --ask-become-pass -vv
 ```
+
+## Running parts of playbook
+
+```bash
+ansible-playbook main.yaml --ask-become-pass -vv --tags terminal
+```
