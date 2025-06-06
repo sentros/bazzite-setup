@@ -16,5 +16,7 @@ pip install --user ansible
 ## Running setup playbook
 
 ```bash
-ansible-playbook --ask-become-pass -vv
+git clone https://github.com/sentros/bazzite-setup
+cd bazzite-setup
+ansible-playbook main.yaml --ask-become-pass -vv
 ```
