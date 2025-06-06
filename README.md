@@ -26,3 +26,22 @@ ansible-playbook main.yaml --ask-become-pass -vv
 ```bash
 ansible-playbook main.yaml --ask-become-pass -vv --tags terminal
 ```
+
+## Why x?
+
+### 1password
+
+The reason 1password is installed as an overlay app instead of a flatpak has to do with the fact that the flatpak version does not support ssh agent integration nor can it communicate with the CLI tool.
+
+### Visual Studio Code
+
+The reason vscode is installed as an overlay app instead of a flatpak has to do with the fact that the shell integration would
+run in an isolated environment and it would require jumping through hoops to get it to run on the host. And those workaround may stop working in the future.
+
+### Terminal
+
+I have it set up the way I want as a personal preference. I prefer bat over cat, eza over ls and oh my zsh with its various plugins over other shells. I also do development stuff so that's why there are various linters etc installed.
+
+### Mangohud configs
+
+I have some game specific configs that mostly limit fps as not to heat up my PC unnecessarily and as a side effect make a lot of noise.
