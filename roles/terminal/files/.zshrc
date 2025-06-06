@@ -91,6 +91,9 @@ function terraclean () {
   rm -rf .terraform .terragrunt-cache .terraform.lock.hcl *.autogen.tf;  ls -1 | while read d; do test -d "$d" || continue; echo $d; (cd $d ; rm -rf .terraform .terragrunt-cache .terraform.lock.hcl *.autogen.tf); done
 }
 
+# ptyxis notifications
+source /etc/profile.d/vte.sh
+
 # --- FINAL TOUCHES ---
 setopt auto_cd       # cd by just typing the dir name
 setopt correct       # autocorrect minor spelling errors in commands
