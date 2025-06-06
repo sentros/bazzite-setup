@@ -38,3 +38,15 @@
     - name: "Verify qmk binary runs"
       ansible.builtin.command: "qmk -V"
       changed_when: false
+
+    - name: "Check that qmk has been set up"
+      ansible.builtin.stat:
+        path: $HOME/qmk_firmware/keyboards/gmmk/pro/rev1/iso/keymaps
+      register: qmk_gmmk
+
+    - name: "Copy sentros keymap over"
+      ansible.builtin.copy:
+        src: "{{ role_path }}/files/"
+        dest: "$HOME/qmk_firmware/keyboards/gmmk/pro/rev1/iso/keymaps/sentros/"
+        mode: "0644"
+      when: qmk_gmmk.stat.exists
