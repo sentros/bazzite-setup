@@ -1,7 +1,10 @@
-- name: "Install pip based apps"
-  ansible.builtin.pip:
-    name:
-      - httpie
-      - ansible-lint
-    state: present
-    extra_args: --user
+- name: "Pip block"
+  tags: pip
+  block:
+    - name: "Install pip based apps"
+      ansible.builtin.pip:
+        name:
+          - httpie
+          - ansible-lint
+        state: present
+        extra_args: --user

@@ -1,33 +1,36 @@
-- name: "Install oh my zsh"
-  ansible.builtin.shell: 'sh -c  "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
-  register: ohmyzsh_result
-  changed_when:
-    - "ohmyzsh_result.rc != 0"
-    - "'The $ZSH folder already exists' not in ohmyzsh_result.stdout"
-  failed_when:
-    - "ohmyzsh_result.rc != 0"
-    - "'The $ZSH folder already exists' not in ohmyzsh_result.stdout"
+- name: "Terminal block"
+  tags: terminal
+  block:
+    - name: "Install oh my zsh"
+      ansible.builtin.shell: 'sh -c  "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+      register: ohmyzsh_result
+      changed_when:
+        - "ohmyzsh_result.rc != 0"
+        - "'The $ZSH folder already exists' not in ohmyzsh_result.stdout"
+      failed_when:
+        - "ohmyzsh_result.rc != 0"
+        - "'The $ZSH folder already exists' not in ohmyzsh_result.stdout"
 
-- name: "Copy sentros zsh theme over"
-  ansible.builtin.copy:
-    src: "{{ role_path }}/files/sentros.zsh-theme"
-    dest: "$HOME/.oh-my-zsh/custom/themes/sentros.zsh-theme"
-    mode: "0644"
+    - name: "Copy sentros zsh theme over"
+      ansible.builtin.copy:
+        src: "{{ role_path }}/files/sentros.zsh-theme"
+        dest: "$HOME/.oh-my-zsh/custom/themes/sentros.zsh-theme"
+        mode: "0644"
 
-- name: "Install zsh-autosuggestions plugin"
-  ansible.builtin.git:
-    repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
-    dest: "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
-    update: true
+    - name: "Install zsh-autosuggestions plugin"
+      ansible.builtin.git:
+        repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
+        dest: "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+        update: true
 
-- name: "Install fast-syntax-hilighting plugin"
-  ansible.builtin.git:
-    repo: "https://github.com/zdharma-continuum/fast-syntax-highlighting.git"
-    dest: "$HOME/.oh-my-zsh/custom/plugins/fast-syntax-highlighting"
-    update: true
+    - name: "Install fast-syntax-hilighting plugin"
+      ansible.builtin.git:
+        repo: "https://github.com/zdharma-continuum/fast-syntax-highlighting.git"
+        dest: "$HOME/.oh-my-zsh/custom/plugins/fast-syntax-highlighting"
+        update: true
 
-- name: "Copy .zshrc over"
-  ansible.builtin.copy:
-    src: "{{ role_path }}/files/.zshrc"
-    dest: "$HOME/.zshrc"
-    mode: "0644"
+    - name: "Copy .zshrc over"
+      ansible.builtin.copy:
+        src: "{{ role_path }}/files/.zshrc"
+        dest: "$HOME/.zshrc"
+        mode: "0644"

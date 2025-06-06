@@ -1,9 +1,12 @@
-- name: "Install flatpack apps"
-  community.general.flatpak:
-    method: system
-    state: present
-    remote: flathub
-    name:
-      - org.telegram.desktop
-      - org.telegram.desktop.webview
-      - com.heroicgameslauncher.hgl
+- name: "Flatpak block"
+  tags: flatpak
+  block:
+    - name: "Install flatpak apps"
+      community.general.flatpak:
+        method: system
+        state: present
+        remote: flathub
+        name:
+          - org.telegram.desktop
+          - org.telegram.desktop.webview
+          - com.heroicgameslauncher.hgl

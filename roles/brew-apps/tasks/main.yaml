@@ -1,11 +1,14 @@
-- name: "Install brew based apps"
-  community.general.homebrew:
-    name:
-      - bat
-      - eza
-      - fzf
-      - hadolint
-      - shellcheck
-      - zsh
-    state: latest
-    update_homebrew: true
+- name: "Brew block"
+  tags: brew
+  block:
+    - name: "Install brew based apps"
+      community.general.homebrew:
+        name:
+          - bat
+          - eza
+          - fzf
+          - hadolint
+          - shellcheck
+          - zsh
+        state: latest
+        update_homebrew: true
