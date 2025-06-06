@@ -1,5 +1,18 @@
-- name: "Copy mangohud configs over"
-  ansible.builtin.copy:
-    src: "{{ role_path }}/files/"
-    dest: "$HOME/.config/MangoHud/"
-    mode: "0644"
+- name: "Mangohud block"
+  tags: mangohud
+  block:
+    - name: "Copy mangohud configs over"
+      ansible.builtin.copy:
+        src: "{{ role_path }}/files/"
+        dest: "$HOME/.config/MangoHud/"
+        mode: "0644"
+
+    - name: "Check if mangohud is enabled on Steam games"
+      ansible.builtin.command: flatpak override --show --user com.valvesoftware.Steam
+      register: steam_overrides
+      changed_when: false
+
+    - name: "Enable mangohud on Steam games"
+      ansible.builtin.command: flatpak override --user --env=MANGOHUD=1 com.valvesoftware.Steam
+      when: "'MANGOHUD=1' not in steam_overrides.stdout"
+      changed_when: true
