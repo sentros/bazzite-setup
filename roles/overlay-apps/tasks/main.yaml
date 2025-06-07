@@ -41,6 +41,23 @@
         repo_gpgcheck: true
         gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Microsoft"
 
+    - name: "Add ghostty gpg key"
+      ansible.builtin.get_url:
+        url: https://download.copr.fedorainfracloud.org/results/pgdev/ghostty/pubkey.gpg
+        dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-ghostty
+        mode: "0644"
+
+    # https://ghostty.org/docs/install/binary#silverblue-(and-other-atomic-desktops)
+    - name: "Add ghostty repository"
+      ansible.builtin.yum_repository:
+        name: "copr:copr.fedorainfracloud.org:pgdev:ghostty"
+        description: "Copr repo for Ghostty owned by pgdev"
+        baseurl: "https://download.copr.fedorainfracloud.org/results/pgdev/ghostty/fedora-$releasever-$basearch/"
+        enabled: true
+        gpgcheck: true
+        repo_gpgcheck: false
+        gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ghostty"
+
     - name: "Install overlay packages"
       community.general.rpm_ostree_pkg:
         name:
@@ -49,12 +66,7 @@
           - 1password-cli
           # VSCode
           - code
-          # # qmk dependencies
-          # - arm-none-eabi-gcc
-          # - arm-none-eabi-newlib
-          # - avr-gcc
-          # - avrdude
-          # - dfu-programmer
-          # - dfu-util
+          # ghostty
+          - ghostty
         state: present
       notify: "Reboot Bazzite"
