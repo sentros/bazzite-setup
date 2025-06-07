@@ -12,3 +12,8 @@
           - zsh
         state: latest
         update_homebrew: true
+
+    - name: "Install Hack font"
+      community.general.homebrew_cask:
+        name: font-hack
+        state: latest
