@@ -40,3 +40,9 @@
         src: "{{ role_path }}/files/ghostty_config"
         dest: "$HOME/.config/ghostty/config"
         mode: "0644"
+
+    - name: "Copy tealdeer config over"
+      ansible.builtin.copy:
+        src: "{{ role_path }}/files/tealdeer_config"
+        dest: "$HOME/.config/tealdeer/config"
+        mode: "0644"
