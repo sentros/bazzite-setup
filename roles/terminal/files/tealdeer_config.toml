@@ -12,7 +12,7 @@ bold = true
 foreground = "cyan"
 
 [style.example_code]
-foreground = "blue"
+foreground = "white"
 
 [style.example_variable]
 foreground = "yellow"

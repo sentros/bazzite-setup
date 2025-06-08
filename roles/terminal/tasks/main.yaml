@@ -41,8 +41,14 @@
         dest: "$HOME/.config/ghostty/config"
         mode: "0644"
 
+    - name: "Make sure tealdeer config directory exists"
+      ansible.builtin.file:
+        path: "$HOME/.config/tealdeer/"
+        state: directory
+        mode: "0700"
+
     - name: "Copy tealdeer config over"
       ansible.builtin.copy:
-        src: "{{ role_path }}/files/tealdeer_config"
-        dest: "$HOME/.config/tealdeer/config"
+        src: "{{ role_path }}/files/tealdeer_config.toml"
+        dest: "$HOME/.config/tealdeer/config.toml"
         mode: "0644"
