@@ -9,6 +9,7 @@
           - fzf
           - hadolint
           - shellcheck
+          - tealdeer
           - zsh
         state: latest
         update_homebrew: true
