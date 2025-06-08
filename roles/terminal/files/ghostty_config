@@ -1,6 +1,6 @@
 # https://ghostty.zerebos.com
 
-command = zsh
+command = /home/linuxbrew/.linuxbrew/bin/zsh
 shell-integration = zsh
 shell-integration-features = cursor,sudo,title
 clipboard-read = allow
