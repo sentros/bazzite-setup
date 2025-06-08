@@ -95,3 +95,6 @@ function terraclean () {
 setopt auto_cd       # cd by just typing the dir name
 setopt correct       # autocorrect minor spelling errors in commands
 setopt nocaseglob    # case-insensitive globbing
+
+# Run random tealdeer page at startup
+tldr --quiet $(tldr --quiet --list | shuf -n1)
