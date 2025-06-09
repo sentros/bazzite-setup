@@ -67,6 +67,6 @@
           # VSCode
           - code
           # ghostty
-          - ghostty
+          # - ghostty
         state: present
       notify: "Reboot Bazzite"
