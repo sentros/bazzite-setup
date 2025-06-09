@@ -58,6 +58,23 @@
         repo_gpgcheck: false
         gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ghostty"
 
+    - name: "Add dfu-programmer gpg key"
+      ansible.builtin.get_url:
+        url: https://download.copr.fedorainfracloud.org/results/erovia/dfu-programmer/pubkey.gpg
+        dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-dfu-programmer
+        mode: "0644"
+
+    # https://copr.fedorainfracloud.org/coprs/erovia/dfu-programmer
+    - name: "Add dfu-programmer repository"
+      ansible.builtin.yum_repository:
+        name: "copr:copr.fedorainfracloud.org:erovia:dfu-programmer"
+        description: "Copr repo for dfu-programmer owned by erovia"
+        baseurl: "https://download.copr.fedorainfracloud.org/results/erovia/dfu-programmer/fedora-$releasever-$basearch/"
+        enabled: true
+        gpgcheck: true
+        repo_gpgcheck: false
+        gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-dfu-programmer"
+
     - name: "Install overlay packages"
       community.general.rpm_ostree_pkg:
         name:
