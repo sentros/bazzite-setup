@@ -18,6 +18,12 @@
         repo_gpgcheck: true
         gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-1Password"
 
+    - name: "Make sure ssh config directory exists"
+      ansible.builtin.file:
+        path: "$HOME/.ssh/"
+        state: directory
+        mode: "0700"
+
     - name: "Add 1password ssh agent config"
       ansible.builtin.copy:
         src: "{{ role_path }}/files/ssh_config"
