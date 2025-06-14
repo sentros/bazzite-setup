@@ -45,4 +45,4 @@
       ansible.builtin.include_role:
         name: qmk
       tags:
-        - always
+        - qmk
