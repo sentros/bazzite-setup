@@ -35,6 +35,12 @@
         dest: "$HOME/.zshrc"
         mode: "0644"
 
+    - name: "Make sure ghostty config directory exists"
+      ansible.builtin.file:
+        path: "$HOME/.config/ghostty/"
+        state: directory
+        mode: "0700"
+
     - name: "Copy ghostty config over"
       ansible.builtin.copy:
         src: "{{ role_path }}/files/ghostty_config"
