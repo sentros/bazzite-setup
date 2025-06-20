@@ -81,6 +81,23 @@
         repo_gpgcheck: false
         gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-dfu-programmer"
 
+    - name: "Add webapp-manager gpg key"
+      ansible.builtin.get_url:
+        url: https://download.copr.fedorainfracloud.org/results/perabyte/webapp-manager/pubkey.gpg
+        dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-webapp-manager
+        mode: "0644"
+
+    # https://copr.fedorainfracloud.org/coprs/erovia/webapp-manager
+    - name: "Add webapp-manager repository"
+      ansible.builtin.yum_repository:
+        name: "copr:copr.fedorainfracloud.org:perabyte:webapp-manager"
+        description: "Copr repo for webapp-manager owned by perabyte"
+        baseurl: "https://download.copr.fedorainfracloud.org/results/perabyte/webapp-manager/fedora-$releasever-$basearch/"
+        enabled: true
+        gpgcheck: true
+        repo_gpgcheck: false
+        gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-webapp-manager"
+
     - name: "Install overlay packages"
       community.general.rpm_ostree_pkg:
         name:
@@ -91,5 +108,6 @@
           - code
           # ghostty
           # - ghostty
+          - webapp-manager
         state: present
       notify: "Reboot Bazzite"
