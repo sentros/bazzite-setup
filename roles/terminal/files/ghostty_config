@@ -5,7 +5,7 @@ shell-integration = zsh
 shell-integration-features = cursor,sudo,title
 clipboard-read = allow
 clipboard-write = allow
-copy-on-select = clipboard
+# copy-on-select = clipboard
 window-theme = dark
 theme = Monokai Pro
 background = #2d2a2e
@@ -30,5 +30,5 @@ palette = 12=#fc9867
 palette = 13=#ab9df2
 palette = 14=#78dce8
 palette = 15=#fcfcfa
-font-size = 13
+font-size = 12
 font-family = Hack
