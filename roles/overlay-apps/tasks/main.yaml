@@ -107,7 +107,7 @@
           # VSCode
           - code
           # ghostty
-          # - ghostty
+          - ghostty
           - webapp-manager
         state: present
       notify: "Reboot Bazzite"
