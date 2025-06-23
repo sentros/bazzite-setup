@@ -9,6 +9,7 @@
           - fzf
           - hadolint
           - neofetch
+          - peco
           - shellcheck
           - tealdeer
           - zsh
